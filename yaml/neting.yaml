@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: neting
+  name: neting
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: neting
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: neting
+    spec:
+      containers:
+      - image: registry.cn-hangzhou.aliyuncs.com/whuanle/neting:review1.0
+        name: neting
+        envFrom:
+        - secretRef:
+            name: neting-basic-auth
+        volumeMounts:
+        - mountPath: /root/.kube/
+          name: kubeconfig
+      volumes:
+      - name: kubeconfig
+        hostPath:
+          # 宿主上目录位置
+          path: /root/.kube/
+          # 此字段为可选
+          type: DirectoryOrCreate
+
+status: {}
+
