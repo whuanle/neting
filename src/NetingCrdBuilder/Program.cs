@@ -1,4 +1,11 @@
 ﻿
+class Program
+{
+    static void Main()
+    {
+
+    }
+}
 //var rc = podlistResp.Watch<V1Neting, object>((item, type) =>
 //{
 //    Console.WriteLine(item);
