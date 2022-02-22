@@ -11,6 +11,10 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+# 编译 ASP.NET Core 的容器环境
+container: mcr.microsoft.com/dotnet/sdk:6.0
+
+
 # 全局变量定义
 variables:
   buildConfiguration: 'Release'
@@ -19,3 +23,8 @@ variables:
 steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
+
+- task: Docker@2
+  inputs:
+    command: 'build'
+    Dockerfile: '**/Dockerfile'
