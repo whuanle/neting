@@ -3,14 +3,18 @@
 # Add steps that run tests, create a NuGet package, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
+# 当分支被合并时构建
 trigger:
 - main
 
+# 基础环境
 pool:
   vmImage: ubuntu-latest
 
+# 全局变量定义
 variables:
   buildConfiguration: 'Release'
+
 
 steps:
 - script: dotnet build --configuration $(buildConfiguration)
